@@ -77,6 +77,24 @@ const updateUser = async (req, res) => {
   }
 };
 
+const userSearch = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Find the user by email
+    const get_user = await user.findOne({ email });
+
+    if (!get_user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.json(get_user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 
 const verifyEmail = async (req, res) => {
   try {
@@ -106,5 +124,6 @@ const verifyEmail = async (req, res) => {
 module.exports = {
   saveUser,
   verifyEmail,
-  updateUser
+  updateUser,
+  userSearch
 }

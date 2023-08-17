@@ -8,6 +8,7 @@ const contactController = require("../controllers/contact");
 router.get("/save_user", userController.saveUser);
 router.get("/verify_email/:token", userController.verifyEmail);
 router.post("/update_user/:id", userController.updateUser);
+router.get("/user_search", userController.userSearch);
 
 router.post("/projects", projectController.createProject);
 router.get("/projects", projectController.getAllProjects);
